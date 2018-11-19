@@ -10,14 +10,14 @@ import forEach from 'callbag-for-each'
 import map from 'callbag-map'
 import merge from 'callbag-merge'
 import pipe from 'callbag-pipe'
-import sample from 'callbag-sample'
+import sampleWhen from 'callbag-sample-when'
 
 pipe(
   merge(
     map(() => false)(fromEvent(element, 'mousedown')),
     map(() => true)(fromEvent(element, 'mousemove')),
   ),
-  sample(fromEvent(element, 'mouseup')),
+  sampleWhen(fromEvent(element, 'mouseup')),
   forEach(isDragging => {
     console.log('Were you dragging?', isDragging)
   }),
